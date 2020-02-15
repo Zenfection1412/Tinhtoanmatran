@@ -8,19 +8,19 @@
 #include "iostream"
 #define max 100
 using namespace std;
-void nhapmatran(int M[max][max], int row, int col);
-void xuatmatran(int M[max][max], int row, int col);
-void congmatran(int A[max][max], int B[max][max], int row, int col);
-void kiemtramatranvuong(int M[max][max],int row,int col);
+void nhapmatran(float M[max][max], int row, int col);
+void xuatmatran(float M[max][max], int row, int col);
+void congmatran(float A[max][max], float B[max][max], int row, int col);
+void kiemtramatranvuong(int row,int col);
 void kiemtra2matrancungcap(int row1, int col1, int row2, int col2);
-void trumatran(int A[max][max], int B[max][max], int row, int col);
-void nhanmatran(int A[max][max],int B[max][max],int row1, int col1,int row2,int col2);
-void chuyenthanhmatrantamgiac(int M[max][max],int row);
+void trumatran(float A[max][max], float B[max][max], int row, int col);
+void nhanmatran(float A[max][max],float B[max][max],int row1, int col1,int row2,int col2);
+void chuyenthanhmatrantamgiac(float M[max][max],int row);
 void dinhthucmatran(int A[max][max],int row,int col);
 int main(int argc, char const *argv[])
 {
     int row1, col1, row2, col2,n;
-    int A[max][max], B[max][max];
+    float A[max][max], B[max][max];
     cout<<"Nhập số ma trận muốn tạo : ";cin>>n;
     if (n==1) {
         int biendoi;
@@ -31,12 +31,12 @@ int main(int argc, char const *argv[])
         cout<< "Biến thành ma trận tam giác (1)\nTính định thức ma trận (2)";cin>>biendoi;
         switch (biendoi) {
             case 1:
-                kiemtramatranvuong(A, row1, col1);
+                kiemtramatranvuong(row1, col1);
                 chuyenthanhmatrantamgiac(A, row1);
                 xuatmatran(A, row1, row1);
                 break;
             case 2:
-                dinhthucmatran(A, row1, col1);
+                
                 break;
             default:
                 cout<<"Bạn đã nhập sai phép biến đổi, mời bạn chạy lại chương trình";
@@ -74,7 +74,7 @@ int main(int argc, char const *argv[])
     return 0;
   }
 }
-void nhapmatran(int M[max][max], int row, int col){
+void nhapmatran(float M[max][max], int row, int col){
     for (int i = 1; i <= row; i++) {
         for (int j = 1; j <= col; j++) {
             cout << "M[" << i << "][" << j << "]= ";
@@ -84,7 +84,7 @@ void nhapmatran(int M[max][max], int row, int col){
     }
 }
 
-void xuatmatran(int M[max][max], int row, int col)
+void xuatmatran(float M[max][max], int row, int col)
 {
     cout << "----Xuất Ma trận---" << '\n';
     for (int i = 1; i <= row; i++) {
@@ -94,7 +94,7 @@ void xuatmatran(int M[max][max], int row, int col)
         cout << '\n';
     }
 }
-void kiemtramatranvuong(int M[max][max],int row,int col){
+void kiemtramatranvuong(int row,int col){
     if (row!=col) {
         cout<<"Lỗi kích thước, ma trận phải cùng cấp";
         exit(0);
@@ -106,9 +106,9 @@ void kiemtra2matrancungcap(int row1, int col1, int row2, int col2){
         exit(0);
     }
 }
-void congmatran(int A[max][max], int B[max][max], int row, int col)
+void congmatran(float A[max][max], float B[max][max], int row, int col)
 {
-    int C[max][max];
+    float C[max][max];
     for (int i = 1; i <= row; i++) {
         for (int j = 1; j <= col; j++) {
             C[i][j] = A[i][j] + B[i][j];
@@ -117,9 +117,9 @@ void congmatran(int A[max][max], int B[max][max], int row, int col)
     xuatmatran(C, row, col);
 }
 
-void trumatran(int A[max][max], int B[max][max], int row, int col)
+void trumatran(float A[max][max], float B[max][max], int row, int col)
 {
-    int C[max][max];
+    float C[max][max];
     for (int i = 1; i <= row; i++) {
         for (int j = 1; j <= col; j++) {
             C[i][j] = A[i][j] - B[i][j];
@@ -127,8 +127,8 @@ void trumatran(int A[max][max], int B[max][max], int row, int col)
     }
     xuatmatran(C, row, col);
 }
-void nhanmatran(int A[max][max],int B[max][max],int row1, int col1,int row2,int col2){
-    int C[max][max];
+void nhanmatran(float A[max][max],float B[max][max],int row1, int col1,int row2,int col2){
+    float C[max][max];
     if (col1!=row2) {
         cout<<"Muốn nhân 2 ma trận bắt buộc cột của ma trận 1 phải bằng dòng của ma trận 2";
         exit(0);
@@ -145,7 +145,7 @@ void nhanmatran(int A[max][max],int B[max][max],int row1, int col1,int row2,int 
     }
     xuatmatran(C, row1, col2);
 }
-void chuyenthanhmatrantamgiac(int M[max][max],int row){
+void chuyenthanhmatrantamgiac(float M[max][max],int row){
     float temp;
     for(int i=1; i<row; i++){
         for(int j=i+1; j<row+1; j++){
@@ -156,7 +156,7 @@ void chuyenthanhmatrantamgiac(int M[max][max],int row){
         }
     }
 }
-void dinhthucmatran(int M[max][max],int row,int col){
+void dinhthucmatran(float M[max][max],int row,int col){
     chuyenthanhmatrantamgiac(M, row);
     double temp = 1;
     for(int i = 0; i<row; i++)
