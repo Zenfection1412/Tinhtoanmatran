@@ -16,7 +16,7 @@ void kiemtra2matrancungcap(int row1, int col1, int row2, int col2);
 void trumatran(float A[max][max], float B[max][max], int row, int col);
 void nhanmatran(float A[max][max],float B[max][max],int row1, int col1,int row2,int col2);
 void chuyenthanhmatrantamgiac(float M[max][max],int row);
-void dinhthucmatran(int A[max][max],int row,int col);
+void dinhthucmatran(float A[max][max],int row,int col);
 int main(int argc, char const *argv[])
 {
     int row1, col1, row2, col2,n;
@@ -36,7 +36,8 @@ int main(int argc, char const *argv[])
                 xuatmatran(A, row1, row1);
                 break;
             case 2:
-                
+                kiemtramatranvuong(row1, col1);
+                dinhthucmatran(A, row1, col1);
                 break;
             default:
                 cout<<"Bạn đã nhập sai phép biến đổi, mời bạn chạy lại chương trình";
@@ -157,9 +158,9 @@ void chuyenthanhmatrantamgiac(float M[max][max],int row){
     }
 }
 void dinhthucmatran(float M[max][max],int row,int col){
-    chuyenthanhmatrantamgiac(M, row);
-    double temp = 1;
-    for(int i = 0; i<row; i++)
+    chuyenthanhmatrantamgiac(M,row);
+    float temp = 1;
+    for(int i = 1; i<=row; i++)
       temp*=M[i][i];
     cout<<"Định thức ma trận = "<<temp;
 }
