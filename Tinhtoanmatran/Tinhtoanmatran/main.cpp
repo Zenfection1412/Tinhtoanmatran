@@ -15,7 +15,10 @@ void kiemtramatranvuong(int row,int col);
 void kiemtra2matrancungcap(int row1, int col1, int row2, int col2);
 void trumatran(float A[max][max], float B[max][max], int row, int col);
 void nhanmatran(float A[max][max],float B[max][max],int row1, int col1,int row2,int col2);
-void chuyenthanhmatrantamgiac(float M[max][max],int row);
+void biendoimatranchuyenvi(float M[max][max],float C[max][max],int row,int col);
+void biendoimatrantamgiac(float M[max][max],int row);
+void biendoimatranphuhop(float M[max][max],int row);
+void biendoimatrannghichdao(float M[max][max],int row);
 void dinhthucmatran(float A[max][max],int row,int col);
 int main(int argc, char const *argv[])
 {
@@ -28,14 +31,19 @@ int main(int argc, char const *argv[])
         cout << "Nhập số cột j ma trận = "; cin >> col1;
         nhapmatran(A, row1, col1);
         cout << "----Mời bạn chọn biểu thức biến đổi----"<<'\n';
-        cout<< "Biến thành ma trận tam giác (1)\nTính định thức ma trận (2)";cin>>biendoi;
+        cout<< "Biến thành ma trận chuyển vị(1)\nBiến thành ma trận tam giác (2)\nTính định thức ma trận (3)\n Chọn số : ";cin>>biendoi;
         switch (biendoi) {
             case 1:
-                kiemtramatranvuong(row1, col1);
-                chuyenthanhmatrantamgiac(A, row1);
-                xuatmatran(A, row1, row1);
+                float C[max][max];
+                biendoimatranchuyenvi(A, C, row1, col1);
+                xuatmatran(C, col1, row1);
                 break;
             case 2:
+                kiemtramatranvuong(row1, col1);
+                biendoimatrantamgiac(A, row1);
+                xuatmatran(A, row1, row1);
+                break;
+            case 3:
                 kiemtramatranvuong(row1, col1);
                 dinhthucmatran(A, row1, col1);
                 break;
@@ -146,7 +154,7 @@ void nhanmatran(float A[max][max],float B[max][max],int row1, int col1,int row2,
     }
     xuatmatran(C, row1, col2);
 }
-void chuyenthanhmatrantamgiac(float M[max][max],int row){
+void biendoimatrantamgiac(float M[max][max],int row){
     float temp;
     for(int i=1; i<row; i++){
         for(int j=i+1; j<row+1; j++){
@@ -157,10 +165,23 @@ void chuyenthanhmatrantamgiac(float M[max][max],int row){
         }
     }
 }
+void biendoimatranchuyenvi(float M[max][max],float C[max][max],int row,int col){
+    for (int i=1; i<=col; i++) {
+        for (int j=1; j<=row; j++) {
+            C[i][j]=M[j][i];
+        }
+    }
+}
+void biendoimatranphuhop(float M[max][max],int row){
+    
+}
+void biendoimatrannghichdao(float M[max][max],int row){
+    
+}
 void dinhthucmatran(float M[max][max],int row,int col){
-    chuyenthanhmatrantamgiac(M,row);
+    biendoimatrantamgiac(M,row);
     float temp = 1;
     for(int i = 1; i<=row; i++)
       temp*=M[i][i];
-    cout<<"Định thức ma trận = "<<temp;
+    cout<<"Định thức ma trận = "<<temp<<'\n';
 }
